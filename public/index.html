@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Tetris</title>
+		<style >
+			body {
+				margin: 40px 0 0 0;
+				padding: 0;
+				background-color: #EEE;
+				text-align: center;
+			}
+			#canvas {
+				text-align: center;
+				vertical-align: middle;
+				border: 2px solid #333;
+				width: 400px;
+				height: 800px;
+				image-rendering: pixelated;
+				image-rendering: crisp-edges;
+				image-rendering: -moz-crisp-edges;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="score"></h1>
+		<div class="canvas-section">
+			<canvas id="canvas" width="10" height="20"></canvas>
+		</div>
+	</body>
+	<script type="module"> 
+		import createTetris from './js/tetris.js'
+		import draw from './js/draw.js'
+
+		const canvas = document.getElementById('canvas')
+		const score = document.getElementById('score')
+
+		const game = createTetris(20, 10)
+
+		document.addEventListener("keydown", (event) => {
+			const command = {
+				type: "move-piece",
+				keyPressed: event.key
+			};
+			game.receive(command)
+		});
+		
+		draw(canvas, score, game, requestAnimationFrame)
+		
+	</script>
+</html>
