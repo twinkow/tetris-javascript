@@ -24,6 +24,7 @@ const createPiece = (type) => {
 				[0, 0, 0, 0],
 				[0, 0, 0, 0]
 			]
+			piece.y--
 			piece.color = 'aqua'
 			break
 		case 'J':
